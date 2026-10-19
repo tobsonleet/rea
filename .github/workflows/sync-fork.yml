@@ -1,0 +1,19 @@
+name: Sync Fork
+
+on:
+  schedule:
+    - cron: '0 3 1,15 * *'   # am 1. und 15. jedes Monats
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync fork with upstream
+        uses: tgymnich/fork-sync@v2.4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
